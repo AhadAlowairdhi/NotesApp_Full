@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.databinding.NoteRowBinding
 
-class NotesAdapter(var notesList: ArrayList <String>): RecyclerView.Adapter<NotesAdapter.ItemViewHolder>() {
+class NotesAdapter(val activity: MainActivity , var notesList: ArrayList <String>): RecyclerView.Adapter<NotesAdapter.ItemViewHolder>() {
     class ItemViewHolder(var binding: NoteRowBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -19,6 +19,17 @@ class NotesAdapter(var notesList: ArrayList <String>): RecyclerView.Adapter<Note
 
         holder.binding.apply {
             tvNote.text = aNote
+
+            edtNote.setOnClickListener{
+                activity.Dialog(aNote)
+            }
+
+
+            delNote.setOnClickListener{
+               activity.delNote(aNote)
+             }
+
+
         }
     }
 
