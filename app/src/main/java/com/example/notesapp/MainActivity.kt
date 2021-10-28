@@ -63,17 +63,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun updtNote(note: String, upnote: String){
+        dbh.updatNote(note,upnote)
+        updtRC()
+    }
+
+    fun DialogEdit(oldNote : String ){
+        val dialogBuilder = AlertDialog.Builder(this)
+        val newNote = EditText(this)
+        newNote.hint = "Enter new note"
+        dialogBuilder
+            .setCancelable(false)
+            .setPositiveButton("Save", DialogInterface.OnClickListener {
+
+                    dialog, id-> updtNote( oldNote,newNote.text.toString())
+            })
+            .setNegativeButton("Cancel", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+        val alert = dialogBuilder.create()
+        alert.setTitle("Update Note")
+        alert.setView(newNote)
+        alert.show()
+    }
 
     fun delNote(Note:String){
         dbh.delNote(Note)
         updtRC()
         Toast.makeText(this, "deleted note successfully!", Toast.LENGTH_SHORT).show()
       //  rvNotes.scrollToPosition(notesList.size-1)
-    }
-
-    fun updtNote(note: String, upnote: String){
-        dbh.updatNote(note,upnote)
-        updtRC()
     }
 
     fun Dialog(oldNote : String ){
