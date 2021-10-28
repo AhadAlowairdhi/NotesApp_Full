@@ -94,22 +94,20 @@ class MainActivity : AppCompatActivity() {
       //  rvNotes.scrollToPosition(notesList.size-1)
     }
 
-    fun Dialog(oldNote : String ){
+    fun DialogDel(oldNote : String ){
         val dialogBuilder = AlertDialog.Builder(this)
-        val newNote = EditText(this)
-        newNote.hint = "Enter new note"
+        dialogBuilder.setMessage("Are you sure?")
         dialogBuilder
             .setCancelable(false)
-            .setPositiveButton("Save", DialogInterface.OnClickListener {
+            .setPositiveButton("Yes", DialogInterface.OnClickListener {
+                    dialog, id-> delNote(oldNote)
 
-                    dialog, id-> updtNote( oldNote,newNote.text.toString())
             })
-            .setNegativeButton("Cancel", DialogInterface.OnClickListener {
+            .setNegativeButton("No", DialogInterface.OnClickListener {
                     dialog, id -> dialog.cancel()
             })
         val alert = dialogBuilder.create()
-        alert.setTitle("Update Note")
-        alert.setView(newNote)
+        alert.setTitle("Delete Note")
         alert.show()
     }
 }
