@@ -21,12 +21,12 @@ class NotesAdapter(val activity: MainActivity , var notesList: ArrayList <String
             tvNote.text = aNote
 
             edtNote.setOnClickListener{
-                activity.Dialog(aNote)
+                activity.DialogEdit(aNote)
             }
 
 
             delNote.setOnClickListener{
-               activity.delNote(aNote)
+               activity.DialogDel(aNote)
              }
 
 
